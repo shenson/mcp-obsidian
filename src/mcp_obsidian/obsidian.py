@@ -57,6 +57,8 @@ class Obsidian():
 
         
     def list_files_in_dir(self, dirpath: str) -> Any:
+        if dirpath.endswith("/"):
+            dirpath = dirpath[:-1]
         url = f"{self.get_base_url()}/vault/{dirpath}/"
         
         def call_fn():
