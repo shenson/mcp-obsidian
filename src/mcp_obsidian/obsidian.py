@@ -2,6 +2,7 @@ import requests
 import urllib.parse
 import os
 from typing import Any
+from pathlib import Path
 
 class Obsidian():
     def __init__(
@@ -57,8 +58,7 @@ class Obsidian():
 
         
     def list_files_in_dir(self, dirpath: str) -> Any:
-        if dirpath.endswith("/"):
-            dirpath = dirpath[:-1]
+        dirpath = Path(dirpath).as_posix()
         url = f"{self.get_base_url()}/vault/{dirpath}/"
         
         def call_fn():
